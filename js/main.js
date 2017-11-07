@@ -15,24 +15,6 @@ function displayTime() {
 		} 
 		return arg;
 	}
-	var date = new Date();
-	var hours = date.getHours();
-	var minutes = date.getMinutes();
-	var seconds = date.getSeconds();
-	var miliseconds = date.getMilliseconds();
-	// function romanConvert(num) {
-	// 	if (num <= 3) {
-	// 		for (var i = 0; )
-	// 	}
-	// 	if (num = 10) {
-	// 		num = "X"
-	// 	}
-	// 	return time;
-	// }
-	var numeralCodes = [["","I","II","III","IV","V","VI","VII","VIII","IX"],         // Ones
-	                    ["","X","XX","XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"],   // Tens
-	                    ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"]];        // Hundreds
-
 	function convert(num) {
 	  var numeral = "";
 	  var digits = num.toString().split('').reverse();
@@ -65,19 +47,28 @@ function displayTime() {
 			}
 			if (fives === "[][]") {
 				fives = '';
-				tens += "{[]}";
+				tens += "{}";
 			}
 		}
 		str = tens + fives + ones;
 		return str;
 	}
 
+	var date = new Date();
+	var hours = date.getHours();
+	var minutes = date.getMinutes();
+	var seconds = date.getSeconds();
+	var miliseconds = date.getMilliseconds();
+	var numeralCodes = [["","I","II","III","IV","V","VI","VII","VIII","IX"],         // Ones
+	                    ["","X","XX","XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"],   // Tens
+	                    ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"]];        // Hundreds
 
 	if (hours > 12) {
 		hours -= 12;
 	} else if (hours === 0) {
 		hours = 12;
 	}
+	
 	var time = hours + ":" + addZero(minutes) + ":" + addZero(seconds);
 	var romanTime = convert(hours) + ":" + convert(minutes) + ":" + convert(seconds);
 	var dotTime = dots(hours) + " : " + dots(minutes) + " : " + dots(seconds);
@@ -95,32 +86,6 @@ function displayTime() {
 
 displayTime();
 
-
-
-
-// console.log(date)
-// console.log(date.getDate())
-// console.log(date.getHours())
-// console.log(date.getDay())
-// console.log(date.getTime())
-// console.log(date.getSeconds())
-
-// var year = setTimeout(function() {alert(date.getFullYear());}, 3000)
-// function test() {
-// 	console.log("test")
-// }
-
-
-
-
-// var view = {
-// 	setUpEventListeners: function() {
-// 		var button = document.getElementById('btn1');
-// 		button.addEventListener("click", displayTime);
-// 	}
-// }
-
-// view.setUpEventListeners();
 
 
 
