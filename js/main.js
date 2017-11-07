@@ -51,6 +51,9 @@ function displayTime() {
 			}
 		}
 		str = tens + fives + ones;
+		if (str === '') {
+			str = "()"
+		}
 		return str;
 	}
 
@@ -68,7 +71,7 @@ function displayTime() {
 	} else if (hours === 0) {
 		hours = 12;
 	}
-	
+
 	var time = hours + ":" + addZero(minutes) + ":" + addZero(seconds);
 	var romanTime = convert(hours) + ":" + convert(minutes) + ":" + convert(seconds);
 	var dotTime = dots(hours) + " : " + dots(minutes) + " : " + dots(seconds);
