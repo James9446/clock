@@ -51,6 +51,28 @@ function displayTime() {
 		}
 		return str;
 	}
+
+	function brackets(num) {
+		var str = '';
+		var tens = '';
+		var fives = '';
+		var ones = '';
+		for (i = 0; i < num; i++) {
+			ones += "|";
+			if (ones === "|||||") {
+				ones = '';
+				fives += "[]";
+			}
+			if (fives === "[][]") {
+				fives = '';
+				tens += "{[]}";
+			}
+		}
+		str = tens + fives + ones;
+		return str;
+	}
+
+
 	if (hours > 12) {
 		hours -= 12;
 	} else if (hours === 0) {
@@ -59,10 +81,12 @@ function displayTime() {
 	var time = hours + ":" + addZero(minutes) + ":" + addZero(seconds);
 	var romanTime = convert(hours) + ":" + convert(minutes) + ":" + convert(seconds);
 	var dotTime = dots(hours) + " : " + dots(minutes) + " : " + dots(seconds);
+	var bracketTime = brackets(hours) + " : " + brackets(minutes) + " : " + brackets(seconds);
 
 	document.getElementById("output").textContent = time;
 	document.getElementById("roman-output").textContent = romanTime;
 	document.getElementById("dot-output").textContent = dotTime;
+	document.getElementById("brackets-output").textContent = bracketTime;
 	// document.getElementById("outputMil").textContent = convert(miliseconds);
 	// console.log(addZeros(miliseconds))
 	setTimeout(function() {displayTime();}, 1);
