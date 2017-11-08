@@ -57,6 +57,13 @@ function displayTime() {
 		return str;
 	}
 
+	function createBinaryString (nMask) {
+  // nMask must be between -2147483648 and 2147483647
+  for (var nFlag = 0, nShifted = nMask, sMask = ""; nFlag < 32;
+       nFlag++, sMask += String(nShifted >>> 31), nShifted <<= 1);
+  return sMask.slice(25, 31);
+}
+
 	var date = new Date();
 	var hours = date.getHours();
 	var minutes = date.getMinutes();
@@ -76,11 +83,13 @@ function displayTime() {
 	var romanTime = convert(hours) + ":" + convert(minutes) + ":" + convert(seconds);
 	var dotTime = dots(hours) + " : " + dots(minutes) + " : " + dots(seconds);
 	var bracketTime = brackets(hours) + " : " + brackets(minutes) + " : " + brackets(seconds);
+	var binaryTime = createBinaryString(hours) + " : " + createBinaryString(minutes) + " : " + createBinaryString(seconds);
 
 	document.getElementById("output").textContent = time;
 	document.getElementById("roman-output").textContent = romanTime;
 	document.getElementById("dot-output").textContent = dotTime;
 	document.getElementById("brackets-output").textContent = bracketTime;
+	document.getElementById("binary-output").textContent = binaryTime;
 	// document.getElementById("outputMil").textContent = convert(miliseconds);
 	// console.log(addZeros(miliseconds))
 	setTimeout(function() {displayTime();}, 1);
